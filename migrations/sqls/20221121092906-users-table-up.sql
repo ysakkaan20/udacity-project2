@@ -1,6 +1,8 @@
 CREATE TABLE users (
                        id serial PRIMARY KEY ,
-                       name VARCHAR(100),
-                       email VARCHAR(150),
-                       create_at date,password CHAR(32)
+                       firstname VARCHAR(100),
+                       lastname VARCHAR(100),
+                       email VARCHAR(100),
+                       password VARCHAR(100),
+                       created_at VARCHAR(100)
 );

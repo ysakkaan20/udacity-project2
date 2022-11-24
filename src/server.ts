@@ -1,25 +1,16 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import bodyParser from 'body-parser'
-// @ts-ignore
-import Client from './database'
+import routes from './routes/index'
 
 const app: express.Application = express()
 const address: string = '0.0.0.0:3000'
-
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 
-app.get('/', async function (req: Request, res: Response) {
-    try {
-        // @ts-ignore
-        const conn = await Client.connect()
-        const sql = 'SELECT * FROM users'
-        const result = await conn.query(sql)
-        conn.release()
-        return result.rows
-    } catch (err) {
-        throw new Error(`Cannot get users : ${err}`)
-    }
-})
+app.use(bodyParser.raw({ type: 'multipart/form-data; boundary=<calculated when request is sent>' }))
+
+
+app.use('/', routes)
 
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)

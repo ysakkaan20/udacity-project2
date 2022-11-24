@@ -5,19 +5,19 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show (args: product id)
-- Create (args: Product)[token required]
+- Index /get: 0.0.0.0:3000
+- Show (args: product id) /get: 0.0.0.0:3000/products/id
+- Create (args: Product)[token required] / post: 0.0.0.0:3000/product
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
 
 #### Users
-- Index [token required]
-- Show (args: id)[token required]
-- Create (args: User)[token required]
+- Index [token required] /get: 0.0.0.0:3000/users
+- Show (args: id)[token required] /get: 0.0.0.0:3000/users/id
+- Create (args: User)[token required]/post: 0.0.0.0:3000/users
 
 #### Orders
-- Current Order by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required] /get : 0.0.0.0:3000/orders/id
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
@@ -36,7 +36,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 - id
 - id of each product in the order
-- quantity of each product in the order
 - user_id
 - status of order (active or complete)
 
+#### orders_products
+- id
+- user_id
+- product_id
+- quantity
