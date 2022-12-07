@@ -1,11 +1,11 @@
 // @ts-ignore
 import dotenv from 'dotenv'
 // @ts-ignore
-import { Pool } from 'pg'
+import {Pool} from 'pg'
 
 dotenv.config()
 
-const { POSTGRES_HOST, POSTGRES_DB, POSTGRES_TEST_DB, POSTGRES_USER, POSTGRES_PASSWORD, ENV } = process.env
+const {POSTGRES_HOST, POSTGRES_DB, POSTGRES_TEST_DB, POSTGRES_USER, POSTGRES_PASSWORD, ENV} = process.env
 
 let client
 console.log(ENV)

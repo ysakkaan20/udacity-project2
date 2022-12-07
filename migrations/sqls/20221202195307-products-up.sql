@@ -1,7 +1,6 @@
 CREATE TABLE products (
                        id serial PRIMARY KEY ,
                        name VARCHAR(100),
-                       price decimal,
-                       category INTEGER
+                       price decimal
 
 );

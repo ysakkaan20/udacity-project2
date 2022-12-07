@@ -1,16 +1,16 @@
 {
   "dev": {
     "driver": "pg",
-    "host": "your_host",
-    "database": "your_database_name",
-    "user": "your_database_user",
-    "password": "_your_password"
+    "host": "localhost",
+    "database": "shopping",
+    "user": "shopping_user",
+    "password": "password123"
   },
   "test": {
     "driver": "pg",
-    "host": "your_host",
-    "database": "your_test_database_name",
-    "user": "your_database_user",
-    "password": "_your_password"
+    "host": "localhost",
+    "database": "shopping_test",
+    "user": "shopping_user",
+    "password": "password123"
   }
 }

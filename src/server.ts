@@ -7,7 +7,7 @@ const address: string = '0.0.0.0:3000'
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 
-app.use(bodyParser.raw({ type: 'multipart/form-data; boundary=<calculated when request is sent>' }))
+app.use(bodyParser.raw({type: 'multipart/form-data; boundary=<calculated when request is sent>'}))
 
 
 app.use('/', routes)

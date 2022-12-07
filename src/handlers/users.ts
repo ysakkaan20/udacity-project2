@@ -1,27 +1,39 @@
-import express, { Request, Response } from 'express'
-import { User, Users } from '../models/users'
+import {Request, Response} from 'express'
+import {User, Users} from '../models/users'
 import jwt from 'jsonwebtoken'
+// @ts-ignore
+import dotenv from "dotenv";
+import path from "path";
+
 const store = new Users()
 
+const dotEnvPath = path.join(__dirname, '../', '../', '.env');
+// @ts-ignore
+const env = dotenv.config({path: dotEnvPath});
+
+// @ts-ignore
+const TOKEN_SECRET: string = env.parsed.TOKEN_SECRET
 export const login = async (req: Request, res: Response) => {
-   try{
 
-    const userPosted = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password,
-    }
-    const user = await store.login(userPosted)
+    try {
+        const userPosted = {
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            password: req.body.password,
+        }
+        const user = await store.login(userPosted)
 
-        const  token = jwt.sign( {user:{
-                id:user.id,
+        const token = jwt.sign({
+            user: {
+                id: user.id,
                 firstname: user.firstname,
-                lastname:user.lastname,
-                email:user.email
-            }} , process.env.TOKEN_SECRET);
+                lastname: user.lastname,
+                email: user.email
+            }
+        }, TOKEN_SECRET);
         res.json(token)
-    }catch {
+    } catch {
         res.status(401)
         res.json('Invalid email or password')
     }
@@ -43,9 +55,9 @@ export const create = async (req: Request, res: Response) => {
             password: req.body.password,
         }
 
-      const newUser = await store.register(user)
+        const newUser = await store.register(user)
         res.json(newUser)
-    } catch(err) {
+    } catch (err) {
         console.log(err)
         res.status(400)
         res.json(err)

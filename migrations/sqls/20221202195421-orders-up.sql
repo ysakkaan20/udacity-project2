@@ -1,6 +1,6 @@
 CREATE TABLE orders(
     id serial PRIMARY KEY,
-        status boolean,
+     status BOOLEAN DEFAULT FALSE,
     user_id bigint REFERENCES users(id)
 
 

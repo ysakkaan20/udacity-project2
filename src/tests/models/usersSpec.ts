@@ -1,4 +1,4 @@
-import { User, Users } from '../../models/users'
+import {Users} from '../../models/users'
 
 const testUsers = new Users()
 
@@ -29,25 +29,25 @@ describe('Users Model', () => {
             lastname: "test last name",
             email: "email@email.com",
             password: 'Password',
-            created_at: '22/11/2023'
+
         });
         expect(result).toEqual({
-            id:1,
+            id: 1,
             firstname: 'test first name',
             lastname: 'test last name',
             email: 'email@email.com',
-            created_at: '22/11/2023'
+
         });
     });
 
     it('index method should return a list of user', async () => {
         const result = await testUsers.index();
         expect(result).toEqual([{
-            id:1,
+            id: 1,
             firstname: 'test first name',
             lastname: "test last name",
             email: "email@email.com",
-            created_at: '22/11/2023'
+
         }]);
     });
 
@@ -55,11 +55,11 @@ describe('Users Model', () => {
         const result = await testUsers.show("1");
         expect(result).toEqual({
 
-            id:1,
+            id: 1,
             firstname: 'test first name',
             lastname: 'test last name',
             email: 'email@email.com',
-            created_at: '22/11/2023'
+
         });
     });
 

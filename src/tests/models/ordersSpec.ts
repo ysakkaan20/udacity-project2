@@ -1,5 +1,8 @@
-import { Order, Orders } from '../../models/orders'
+import {Orders} from '../../models/orders'
+// @ts-ignore
+import dotenv from 'dotenv'
 
+dotenv.config()
 const testOrder = new Orders()
 
 describe('Users Model', () => {
@@ -36,7 +39,7 @@ describe('Users Model', () => {
             status: false
         });
         expect(result).toEqual({
-            id:1,
+            id: 1,
             status: false,
             user_id: "1",
 
@@ -46,10 +49,10 @@ describe('Users Model', () => {
     it('index method should return a list of user', async () => {
         const result = await testOrder.index();
         expect(result).toEqual([{
-            id:1,
+            id: 1,
             user_id: "1",
             status: false,
-            products: [  ]
+            products: []
         }]);
     });
 
@@ -57,10 +60,10 @@ describe('Users Model', () => {
         const result = await testOrder.show("1");
         expect(result).toEqual({
 
-            id:1,
+            id: 1,
             user_id: "1",
             status: false,
-            products: [  ]
+            products: []
         });
     });
 

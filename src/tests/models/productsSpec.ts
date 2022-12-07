@@ -1,5 +1,8 @@
-import { Product, Products } from '../../models/products'
+import {Products} from '../../models/products'
+// @ts-ignore
+import dotenv from 'dotenv'
 
+dotenv.config()
 const testProducts = new Products()
 
 describe('Users Model', () => {
@@ -21,8 +24,6 @@ describe('Users Model', () => {
     });
 
 
-
-
     it('create method should add a user', async () => {
         const result = await testProducts.create({
             name: "new product",
@@ -33,7 +34,7 @@ describe('Users Model', () => {
             id: 1,
             name: "new product",
             price: "50",
-            category:null
+
         });
     });
 
@@ -43,7 +44,7 @@ describe('Users Model', () => {
             id: 1,
             name: "new product",
             price: "50",
-            category:null
+
         }]);
     });
 
@@ -53,7 +54,7 @@ describe('Users Model', () => {
             id: 1,
             name: "new product",
             price: "50",
-            category:null
+
         });
     });
 

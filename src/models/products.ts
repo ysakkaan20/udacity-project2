@@ -1,16 +1,16 @@
 // @ts-ignore
 import Client from '../database'
 // @ts-ignore
+// @ts-ignore
+import dotenv from 'dotenv'
 
-
+dotenv.config()
 
 
 export type Product = {
     id?: Number
     name: string
     price: string
-    category?: string|null
-
 }
 
 export class Products {
@@ -26,6 +26,7 @@ export class Products {
             throw new Error(`Cannot get products : ${err}`)
         }
     }
+
     async show(id: string): Promise<Product> {
         try {
             const sql = 'SELECT * FROM products WHERE id=($1)'
@@ -45,11 +46,11 @@ export class Products {
     async create(p: Product): Promise<Product> {
 
         try {
-            const sql = 'INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *'
+            const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *'
             // @ts-ignore
             const conn = await Client.connect()
 
-            const result = await conn.query(sql, [p.name,p.price, p.category ])
+            const result = await conn.query(sql, [p.name, p.price])
 
             const user = result.rows[0]
 

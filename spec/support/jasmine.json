@@ -6,7 +6,6 @@
   ],
   "helpers": [
     "helpers/**/*.?(m)ts"
-
   ],
   "env": {
     "stopSpecOnExpectationFailure": false,
