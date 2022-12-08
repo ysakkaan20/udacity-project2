@@ -3,6 +3,7 @@ import {Users} from '../../models/users'
 const testUsers = new Users()
 
 describe('Users Model', () => {
+
     it('should have an index method', () => {
         expect(testUsers.index).toBeDefined();
     });
@@ -32,7 +33,7 @@ describe('Users Model', () => {
 
         });
         expect(result).toEqual({
-            id: 1,
+            id: 2,
             firstname: 'test first name',
             lastname: 'test last name',
             email: 'email@email.com',
@@ -42,8 +43,15 @@ describe('Users Model', () => {
 
     it('index method should return a list of user', async () => {
         const result = await testUsers.index();
-        expect(result).toEqual([{
-            id: 1,
+        expect(result).toEqual([
+            {
+                id:1,
+                firstname: 'first name',
+                lastname: "last name",
+                email: "userfortoken@email.com",
+            },
+            {
+            id: 2,
             firstname: 'test first name',
             lastname: "test last name",
             email: "email@email.com",
@@ -52,10 +60,10 @@ describe('Users Model', () => {
     });
 
     it('show method should return the correct user', async () => {
-        const result = await testUsers.show("1");
+        const result = await testUsers.show("2");
         expect(result).toEqual({
 
-            id: 1,
+            id: 2,
             firstname: 'test first name',
             lastname: 'test last name',
             email: 'email@email.com',

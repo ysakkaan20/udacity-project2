@@ -38,15 +38,18 @@ export class Orders {
     }
 
     async show(id: string): Promise<Order> {
+
         try {
             const sql = 'SELECT * FROM orders WHERE id=($1)'
             // @ts-ignore
             const conn = await Client.connect()
 
             const result = await conn.query(sql, [id])
+
             const order = result.rows[0]
             conn.release()
-            order.products = await this.getOrderProducts(result.rows[0].id)
+            order.products = []
+          order.products = await this.getOrderProducts(result.rows[0].id)
 
             return order
         } catch (err) {

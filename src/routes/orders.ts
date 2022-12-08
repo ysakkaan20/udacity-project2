@@ -7,7 +7,7 @@ const orders = express.Router()
 orders.get('/',authentication, index)
 orders.get('/:id',authentication, show)
 orders.post('/', authentication, create)
-orders.post('/addproduct', authentication,addProduct)
+orders.post('/addproduct',authentication, addProduct)
 orders.delete('/',authentication, destroy)
 orders.post('/current', authentication, current)
 

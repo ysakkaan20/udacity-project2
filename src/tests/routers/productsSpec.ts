@@ -14,10 +14,30 @@ app.use(bodyParser.raw({type: 'multipart/form-data; boundary=<calculated when re
 
 app.use('/', routes)
 
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJ0aGlzIGlzIHRoZSBuYW1lIiwibGFzdG5hbWUiOiJ0aGlzIGlzIHRoZSBuYW1lIiwiZW1haWwiOiJlbWFpbEBlbWF1bC5jb20ifSwiaWF0IjoxNjY5OTA2NzEwfQ.wjhvSnKm8YuR4joibkpwHc13qud_oJtLe9Grx0T2o8s';
+let TOKEN = ''
 
 describe('test the endpoint to check products', function () {
+    beforeAll(async function() {
 
+
+
+        const login = {
+            email: "userfortoken@email.com",
+            password: 'Password',
+        }
+
+
+
+        const userLogin = await supertest(app)
+
+            .post('/users/login')
+            .set('Accept', 'application/json')
+            .type('form')
+            .send(login)
+
+        TOKEN=userLogin.body
+
+    });
     it('it should return 200 and the product after add it into database ', async function () {
 
 
