@@ -40,9 +40,15 @@ export const login = async (req: Request, res: Response) => {
 
 }
 export const index = async (_req: Request, res: Response) => {
-    const users = await store.index()
+    try{
+        const users = await store.index()
 
-    res.send(users)
+        res.send(users)
+    }catch (err){
+        res.status(400)
+        res.json(err)
+    }
+
 }
 
 export const create = async (req: Request, res: Response) => {
@@ -58,14 +64,20 @@ export const create = async (req: Request, res: Response) => {
         const newUser = await store.register(user)
         res.json(newUser)
     } catch (err) {
-        console.log(err)
+
         res.status(400)
         res.json(err)
     }
 }
 export const show = async (req: Request, res: Response) => {
+    try{
+        const user = await store.show(req.params.id)
+        res.json(user)
+    }catch (err){
+        res.status(400)
+        res.json(err)
+    }
 
-    const user = await store.show(req.params.id)
-    res.json(user)
+
 }
 

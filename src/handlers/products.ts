@@ -4,14 +4,29 @@ import {Product, Products} from '../models/products'
 const store = new Products()
 
 export const index = async (_req: Request, res: Response) => {
-    const orders = await store.index()
 
-    res.send(orders)
-}
+    try{
+        const orders = await store.index()
+
+        res.send(orders)
+
+    }catch (err) {
+        res.status(400)
+        res.json(err)
+    }
+    }
+
 
 export const show = async (req: Request, res: Response) => {
-    const product = await store.show(req.params.id)
-    res.json(product)
+
+    try{
+        const product = await store.show(req.params.id)
+        res.json(product)
+    }catch (err) {
+        res.status(400)
+        res.json(err)
+    }
+
 }
 
 export const create = async (req: Request, res: Response) => {
@@ -30,8 +45,14 @@ export const create = async (req: Request, res: Response) => {
 }
 
 export const destroy = async (req: Request, res: Response) => {
-    const deleted = await store.delete(req.body.id)
-    res.json(deleted)
+    try{
+        const deleted = await store.delete(req.body.id)
+        res.json(deleted)
+    }catch (err){
+        res.status(400)
+        res.json(err)
+    }
+
 }
 
 

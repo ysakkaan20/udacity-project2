@@ -4,11 +4,11 @@ import authentication from "../utilities/authentication";
 
 const orders = express.Router()
 
-orders.get('/', index)
-orders.get('/:id', show)
+orders.get('/',authentication, index)
+orders.get('/:id',authentication, show)
 orders.post('/', authentication, create)
-orders.post('/addproduct', addProduct)
-orders.delete('/', destroy)
+orders.post('/addproduct', authentication,addProduct)
+orders.delete('/',authentication, destroy)
 orders.post('/current', authentication, current)
 
 export default orders
